@@ -1,4 +1,4 @@
-# template-simple-fastify-node-ts
+# js-basic-typescript-projects-add-typescript-to-fastify-api
 
 ## Access to mongo db
 
@@ -14,6 +14,7 @@ docker compose
 3. If command works, run ```docker-compose up``` or ```docker compose up```
 4. After that you can use mongo db with next credentials
 
+
 Host - localhost
 
 Port - 27019
@@ -23,7 +24,7 @@ Username - root
 Password - example
 
 Or just use this connection string
-```mongodb://root:example@localhost:27019/```
+```mongodb://root:example@localhost:40001/```
 
 For stopping container with mongo you can use ```CTRL + C``` in an active terminal window where you run command above
 
