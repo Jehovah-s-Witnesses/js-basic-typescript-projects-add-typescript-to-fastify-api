@@ -1,10 +1,9 @@
 import { projectService } from '../services/project.service';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { RouteHandler } from 'fastify';
 
-export const createProjectRoute = async (
-  request: FastifyRequest<{ Body: { name: string } }>,
-  reply: FastifyReply
-)  => {
+export const createProjectRoute: RouteHandler<{
+  Body: { name: string };
+}> = async (request, reply) => {
   const { name } = request.body;
 
   const project = await projectService.create(name);
@@ -12,10 +11,10 @@ export const createProjectRoute = async (
   reply.status(201).send(project);
 };
 
-export const updateProjectRoute = async (
-  request: FastifyRequest<{ Params: { id: string }; Body: { name: string } }>,
-  reply: FastifyReply
-) => {
+export const updateProjectRoute: RouteHandler<{
+  Params: { id: string };
+  Body: { name: string };
+}> = async (request, reply) => {
   const {
     body: { name },
     params: { id },
@@ -30,10 +29,9 @@ export const updateProjectRoute = async (
   reply.send(project);
 };
 
-export const deleteProjectRoute = async (
-  request: FastifyRequest<{ Params: { id: string } }>,
-  reply: FastifyReply
-) => {
+export const deleteProjectRoute: RouteHandler<{
+  Params: { id: string };
+}> = async (request, reply) => {
   const { id } = request.params;
 
   if (!(await projectService.getOne(id))) {
@@ -45,10 +43,9 @@ export const deleteProjectRoute = async (
   reply.send({ message: 'Project was removed' });
 };
 
-export const getOneProjectRoute = async (
-  request: FastifyRequest<{ Params: { id: string } }>,
-  reply: FastifyReply
-)  => {
+export const getOneProjectRoute: RouteHandler<{
+  Params: { id: string };
+}> = async (request, reply) => {
   const { id } = request.params;
   const project = await projectService.getOne(id);
 
@@ -59,10 +56,9 @@ export const getOneProjectRoute = async (
   reply.send(project);
 };
 
-export const getListProjectRoute = async (
-  request: FastifyRequest<{ Querystring: { offset: number; limit: number } }>,
-  reply: FastifyReply
-)  => {
+export const getListProjectRoute: RouteHandler<{
+  Querystring: { offset: number; limit: number };
+}> = async (request, reply) => {
   const { limit, offset } = request.query;
 
   const projectListData = await projectService.getList(offset, limit);

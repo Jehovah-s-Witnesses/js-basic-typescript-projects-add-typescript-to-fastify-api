@@ -1,14 +1,5 @@
 import { model, Schema, Types } from 'mongoose';
 
-const taskTypeSchema = {
-  _id: Types.ObjectId,
-  title: String,
-  deadline: Date,
-  projectId: Types.ObjectId,
-  createdAt: Date,
-  updatedAt: Date,
-}
-
 const taskSchema = new Schema(
   {
     _id: {

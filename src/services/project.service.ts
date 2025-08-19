@@ -1,7 +1,6 @@
 import { Project } from '../entities/Project';
 import { Types } from 'mongoose';
 
-
 export class ProjectService {
   async create(name: string) {
     const project = new Project({
@@ -41,7 +40,6 @@ export class ProjectService {
       count,
     };
   }
-
 }
 
 export const projectService = new ProjectService();
