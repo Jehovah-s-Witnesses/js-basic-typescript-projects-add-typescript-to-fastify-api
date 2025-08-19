@@ -2,9 +2,9 @@ import {
   getPaginatedResponseSchema,
   paginationLimitSchema,
   paginationOffsetSchema,
-} from './common.schema.js';
-import { projectIdSchema } from './project.schema.js';
-import { TASK_TAGS } from '../constants/task.constants.js';
+} from './common.schema';
+import { projectIdSchema } from './project.schema';
+import { TASK_TAGS } from '../constants/task.constants';
 
 export const taskTitleSchema = {
   type: 'string',
@@ -133,6 +133,6 @@ export const getListTaskSchema = {
     required: ['offset', 'limit', 'projectId'],
   },
   response: {
-    200: getPaginatedResponseSchema(taskSchema),
+    200: getPaginatedResponseSchema<typeof taskSchema>(taskSchema),
   },
 };

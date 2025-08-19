@@ -1,6 +1,9 @@
-import { taskService } from '../services/task.service.js';
+import { taskService } from '../services/task.service';
+import { RouteHandler } from 'fastify';
 
-export const createTaskRoute = async (request, reply) => {
+export const createTaskRoute: RouteHandler<{
+  Body: { title: string; deadline: Date; projectId: string };
+}> = async (request, reply) => {
   const { title, deadline, projectId } = request.body;
 
   const task = await taskService.create(title, deadline, projectId);
@@ -8,7 +11,10 @@ export const createTaskRoute = async (request, reply) => {
   reply.status(201).send(task);
 };
 
-export const updateTaskRoute = async (request, reply) => {
+export const updateTaskRoute: RouteHandler<{
+  Body: { title: string; deadline: Date };
+  Params: { id: string };
+}> = async (request, reply) => {
   const {
     body: { title, deadline },
     params: { id },
@@ -23,7 +29,10 @@ export const updateTaskRoute = async (request, reply) => {
   reply.send(task);
 };
 
-export const deleteTaskRoute = async (request, reply) => {
+export const deleteTaskRoute: RouteHandler<{ Params: { id: string } }> = async (
+  request,
+  reply,
+) => {
   const { id } = request.params;
 
   if (!(await taskService.getOne(id))) {
@@ -35,7 +44,10 @@ export const deleteTaskRoute = async (request, reply) => {
   reply.send({ message: 'Task was removed' });
 };
 
-export const getOneTaskRoute = async (request, reply) => {
+export const getOneTaskRoute: RouteHandler<{ Params: { id: string } }> = async (
+  request,
+  reply,
+) => {
   const { id } = request.params;
   const task = await taskService.getOne(id);
 
@@ -46,7 +58,9 @@ export const getOneTaskRoute = async (request, reply) => {
   reply.send(task);
 };
 
-export const getListTaskRoute = async (request, reply) => {
+export const getListTaskRoute: RouteHandler<{
+  Querystring: { limit: number; offset: number; projectId: string };
+}> = async (request, reply) => {
   const { limit, offset, projectId } = request.query;
 
   const taskListData = await taskService.getList(projectId, offset, limit);

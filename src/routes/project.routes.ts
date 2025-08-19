@@ -1,6 +1,10 @@
-import { projectService } from '../services/project.service.js';
+import { projectService } from '../services/project.service';
+import { FastifyReply, FastifyRequest } from 'fastify';
 
-export const createProjectRoute = async (request, reply) => {
+export const createProjectRoute = async (
+  request: FastifyRequest<{ Body: { name: string } }>,
+  reply: FastifyReply
+)  => {
   const { name } = request.body;
 
   const project = await projectService.create(name);
@@ -8,7 +12,10 @@ export const createProjectRoute = async (request, reply) => {
   reply.status(201).send(project);
 };
 
-export const updateProjectRoute = async (request, reply) => {
+export const updateProjectRoute = async (
+  request: FastifyRequest<{ Params: { id: string }; Body: { name: string } }>,
+  reply: FastifyReply
+) => {
   const {
     body: { name },
     params: { id },
@@ -23,7 +30,10 @@ export const updateProjectRoute = async (request, reply) => {
   reply.send(project);
 };
 
-export const deleteProjectRoute = async (request, reply) => {
+export const deleteProjectRoute = async (
+  request: FastifyRequest<{ Params: { id: string } }>,
+  reply: FastifyReply
+) => {
   const { id } = request.params;
 
   if (!(await projectService.getOne(id))) {
@@ -35,7 +45,10 @@ export const deleteProjectRoute = async (request, reply) => {
   reply.send({ message: 'Project was removed' });
 };
 
-export const getOneProjectRoute = async (request, reply) => {
+export const getOneProjectRoute = async (
+  request: FastifyRequest<{ Params: { id: string } }>,
+  reply: FastifyReply
+)  => {
   const { id } = request.params;
   const project = await projectService.getOne(id);
 
@@ -46,7 +59,10 @@ export const getOneProjectRoute = async (request, reply) => {
   reply.send(project);
 };
 
-export const getListProjectRoute = async (request, reply) => {
+export const getListProjectRoute = async (
+  request: FastifyRequest<{ Querystring: { offset: number; limit: number } }>,
+  reply: FastifyReply
+)  => {
   const { limit, offset } = request.query;
 
   const projectListData = await projectService.getList(offset, limit);

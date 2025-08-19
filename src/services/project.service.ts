@@ -1,8 +1,9 @@
-import { Project } from '../entities/Project.js';
+import { Project } from '../entities/Project';
 import { Types } from 'mongoose';
 
+
 export class ProjectService {
-  async create(name) {
+  async create(name: string) {
     const project = new Project({
       name,
     });
@@ -12,7 +13,7 @@ export class ProjectService {
     return project;
   }
 
-  async update(id, name) {
+  async update(id: string, name: string) {
     return Project.updateOne(
       {
         _id: new Types.ObjectId(id),
@@ -23,15 +24,15 @@ export class ProjectService {
     );
   }
 
-  delete(id) {
+  delete(id: string) {
     return Project.deleteOne({ _id: new Types.ObjectId(id) });
   }
 
-  getOne(id) {
+  getOne(id: string) {
     return Project.findOne({ _id: new Types.ObjectId(id) });
   }
 
-  async getList(offset, limit) {
+  async getList(offset: number, limit: number) {
     const items = await Project.find().limit(limit).skip(offset).lean();
     const count = await Project.countDocuments();
 
@@ -40,6 +41,7 @@ export class ProjectService {
       count,
     };
   }
+
 }
 
 export const projectService = new ProjectService();

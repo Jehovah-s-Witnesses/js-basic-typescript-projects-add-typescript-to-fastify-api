@@ -9,7 +9,7 @@ export const paginationLimitSchema = {
   maximum: 20,
 };
 
-export const getPaginatedResponseSchema = (schema) => {
+export const getPaginatedResponseSchema = <SchemaType>(schema: SchemaType) => {
   return {
     type: 'object',
     properties: {

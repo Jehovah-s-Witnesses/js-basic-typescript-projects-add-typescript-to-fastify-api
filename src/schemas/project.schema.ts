@@ -1,9 +1,9 @@
-import { PROJECT_TAGS } from '../constants/project.constants.js';
+import { PROJECT_TAGS } from '../constants/projects.constants';
 import {
   getPaginatedResponseSchema,
   paginationLimitSchema,
   paginationOffsetSchema,
-} from './common.schema.js';
+} from './common.schema';
 
 export const projectNameSchema = {
   type: 'string',
@@ -121,6 +121,6 @@ export const getListProjectSchema = {
     required: ['offset', 'limit'],
   },
   response: {
-    200: getPaginatedResponseSchema(projectSchema),
+    200: getPaginatedResponseSchema<typeof projectSchema>(projectSchema),
   },
 };

@@ -11,29 +11,28 @@ import {
   getListProjectRoute,
   getOneProjectRoute,
   updateProjectRoute,
-} from './routes/project.routes.js';
-import { PROJECT_TAGS } from './constants/project.constants.js';
+} from './routes/project.routes';
 import {
   createProjectSchema,
   deleteProjectSchema,
   getListProjectSchema,
   getOneProjectSchema,
   updateProjectSchema,
-} from './schemas/project.schema.js';
+} from './schemas/project.schema';
 import {
   createTaskSchema,
   deleteTaskSchema,
   getListTaskSchema,
   getOneTaskSchema,
   updateTaskSchema,
-} from './schemas/task.schema.js';
+} from './schemas/task.schema';
 import {
   createTaskRoute,
   deleteTaskRoute,
   getListTaskRoute,
   getOneTaskRoute,
   updateTaskRoute,
-} from './routes/tast.routes.js';
+} from './routes/task.routes';
 
 export const server = fastify({
   logger: {

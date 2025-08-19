@@ -31,5 +31,5 @@ For stopping container with mongo you can use ```CTRL + C``` in an active termin
 Or just click on the stop button in the GUI interface of docker desktop
 
 
-## Task. Need rewrite to typescript all files from server.js
+## Task. Need rewrite to typescript all files from server.ts
 All installed, need just to rewrite
