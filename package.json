@@ -19,7 +19,7 @@
     "prettier": "^3.5.3",
     "tsx": "^4.19.4",
     "typescript": "^5.9.2",
-    "vitest": "^3.1.2"
+    "vitest": "^4.0.3"
   },
   "prettier": {
     "singleQuote": true
